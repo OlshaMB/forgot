@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: forgot-${{ matrix.os }}.tar.gz
-          path: ./forgot-${{ matrix.os }}.tar.gz
+          path: ./forgot-${{ matrix.os }}-x86-64.tar.gz
