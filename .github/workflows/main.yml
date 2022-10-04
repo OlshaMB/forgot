@@ -27,9 +27,9 @@ jobs:
           cp ./LICENSE ./bundle/LICENSE
           cp ./README.md ./bundle/README.md
       - name: Zip files
-        run: zip -r ./bundle.zip bundle -q
+        run: zip -r ./bundle-${{ matrix.os }}.zip bundle -q
       - name: Upload bundle
         uses: actions/upload-artifact@v3.1.0
         with:
-          name: forgot.zip
-          path: ./bundle.zip
+          name: forgot-${{ matrix.os }}.zip
+          path: ./bundle-${{ matrix.os }}.zip
