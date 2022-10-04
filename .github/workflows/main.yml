@@ -1,0 +1,33 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: cargo build --release
+      - name: Move files to bundle
+        run: |
+          mkdir bundle
+          cp ./target/forgot ./bundle/forgot
+          cp ./LICENSE ./bundle/LICENSE
+          cp ./README.md ./bundle/README.md
+      - name: Zip files
+        run: zip -r ./bundle.zip bundle -q
+      - name: Upload bundle
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: forgot.zip
+          path: ./bundle.zip
