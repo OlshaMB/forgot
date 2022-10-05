@@ -7,5 +7,5 @@ forgot list
 ```
 - list all your todos ignoring search in ./target, ./docs, ./licences, ./LICENSE
 ```zsh
-forgot list -i ./target,./docs,./licences,./LICENSE
+forgot list -i ./target -i ./docs -i ./licences -i ./LICENSE
 ```
