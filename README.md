@@ -8,10 +8,28 @@ A todo list app that indexes your app to find TODO:'s
 forgot list
 ```
 - list all your todos ignoring search in ./target, ./docs, ./licences, ./LICENSE
-```zsh
+```bash
 forgot list -i ./target -i ./docs -i ./licences -i ./LICENSE
 ```
 - list all your todos in src directory
 ```zsh
 forgot list src
+```
+- list all your todos in src directory and display a code line where todo is located after todo item
+```zsh
+forgot list src --cl
+```
+```python
+✔ Rename a to a normal name - todo.txt:1:7
+a = b #TODO: Rename a to a normal name
+✔ Add string parameter - todo.txt:2:13
+fn to_str() #TODO: Add string parameter
+```
+- list all your todos in src directory and display a code line where todo is located replacing todo's content
+```zsh
+forgot list src --use_cl
+```
+```swift
+✔ a = b #TODO: Rename a to a normal name - todo.txt1:7
+✔ fn to_str() #TODO: Add string parameter - todo.txt:2:13
 ```
