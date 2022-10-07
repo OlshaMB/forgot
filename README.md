@@ -11,3 +11,7 @@ forgot list
 ```zsh
 forgot list -i ./target -i ./docs -i ./licences -i ./LICENSE
 ```
+- list all your todos in src directory
+```zsh
+forgot list src
+```
