@@ -12,6 +12,7 @@ enum CheckMarkType {
     UTF,
     Dash,
     Circle,
+    Custom,
 }
 
 #[derive(Args)]
@@ -50,9 +51,16 @@ pub struct List {
         default_value_t= CheckMarkType::Nerd,
     )]
     checkmark_type: CheckMarkType,
+    #[arg(
+        short = 'm',
+        long = "ch",
+        help = "Custom checkmark symbol, to use it set checkmark type to custom"
+    )]
+    checkmark_char: Option<String>,
 }
 impl SubCommandWithFunction for List {
     fn on_use(&self, args: &Arguments) {
+        let checkmark_char = self.checkmark_char.clone().unwrap_or("".to_string());
         for todo in todos_search(
             if self.ignore.is_empty() {
                 vec![]
@@ -69,6 +77,7 @@ impl SubCommandWithFunction for List {
                 CheckMarkType::Emoji => "✅",
                 CheckMarkType::Dash => "-",
                 CheckMarkType::UTF => "✔",
+                CheckMarkType::Custom => checkmark_char.as_str(),
             };
             let mut format_string = format!(
                 "{} {} - {}:{}:{}{}",
