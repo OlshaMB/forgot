@@ -3,7 +3,7 @@ use crate::{Arguments, SubCommandWithFunction};
 use clap::{Args, ValueEnum};
 use crossterm::style::Stylize;
 use regex::{Regex, Replacer};
-use std::borrow::Borrow;
+use std::env;
 use std::path::{Path, PathBuf};
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 enum CheckMarkType {
@@ -59,7 +59,9 @@ impl SubCommandWithFunction for List {
             } else {
                 self.ignore.clone()
             },
-            self.path.clone().unwrap(),
+            self.path.clone().unwrap_or(
+                env::current_dir().expect("No current dir detected in the command environment"),
+            ),
         ) {
             let checkmark = match self.checkmark_type {
                 CheckMarkType::Circle => "•",
