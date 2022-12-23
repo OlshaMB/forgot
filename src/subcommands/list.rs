@@ -2,9 +2,9 @@ use crate::todos_search::todos_search;
 use crate::{Arguments, SubCommandWithFunction};
 use clap::{Args, ValueEnum};
 use crossterm::style::Stylize;
-use regex::{Regex, Replacer};
+use regex::{Regex};
 use std::env;
-use std::path::{Path, PathBuf};
+use std::path::{PathBuf};
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
 enum CheckMarkType {
     Nerd,
@@ -59,7 +59,7 @@ pub struct List {
     checkmark_char: Option<String>,
 }
 impl SubCommandWithFunction for List {
-    fn on_use(&self, args: &Arguments) {
+    fn on_use(&self, _args: &Arguments) {
         let checkmark_char = self.checkmark_char.clone().unwrap_or("".to_string());
         for todo in todos_search(
             if self.ignore.is_empty() {

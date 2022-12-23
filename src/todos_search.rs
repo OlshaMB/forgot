@@ -1,6 +1,6 @@
-use regex::{Match, Regex};
+use regex::{Regex};
 use std::path::{Path, PathBuf};
-use std::{fs::{read_dir, read_to_string}, io};
+use std::{fs::{read_to_string}};
 #[derive(Default)]
 pub struct Todo {
     pub path: String,
